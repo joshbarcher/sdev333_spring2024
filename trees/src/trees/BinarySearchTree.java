@@ -1,5 +1,8 @@
 package trees;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
     private Node root;
     private int size;
@@ -71,6 +74,32 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
     public void clear() {
         root = null;
         size = 0;
+    }
+
+    @Override
+    public List<T> inOrder() { //LNR
+        List<T> traversal = new ArrayList<>();
+        inOrder(root, traversal);
+        return traversal;
+    }
+
+    //recursively search
+    private void inOrder(Node current, List<T> traversal) {
+        if (current == null) return;
+
+        inOrder(current.left, traversal); //L
+        traversal.add(current.data); //N
+        inOrder(current.right, traversal); //R
+    }
+
+    @Override
+    public List<T> preOrder() { //NLR
+        return null;
+    }
+
+    @Override
+    public List<T> postOrder() { //LRN
+        return null;
     }
 
     @Override

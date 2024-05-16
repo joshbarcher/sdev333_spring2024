@@ -1,5 +1,7 @@
 package trees;
 
+import java.util.List;
+
 //type T will be Comparable (use the Comparable interface)
 public interface ITree<T extends Comparable<T>> {
     //primary methods
@@ -11,6 +13,10 @@ public interface ITree<T extends Comparable<T>> {
     int size();
     boolean isEmpty();
     void clear();
+
+    List<T> inOrder();
+    List<T> preOrder();
+    List<T> postOrder();
 
     //no concept of indices
     //T get(int index);

@@ -2,6 +2,8 @@ package test;
 
 import trees.BinarySearchTree;
 
+import java.util.List;
+
 public class TestTree {
     public static void main(String[] args) {
         /*String[] words = {"was", "this", "and", "or", "but", "to"};
@@ -30,5 +32,8 @@ public class TestTree {
         System.out.println(bst.contains(45));
 
         System.out.println(bst.contains(-10));
+
+        List<Integer> traversal = bst.inOrder();
+        System.out.println(traversal);
     }
 }
