@@ -104,7 +104,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
 
     @Override
     public String toString() {
-        return root == null ? "null" : root.toString();
+        return root == null ? "null" : root.visualize();
     }
 
     private class Node {
@@ -124,18 +124,18 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
          * @param builder the string builder to use
          * @return a string representation of the tree
          */
-        public StringBuilder toString(StringBuilder prefix, boolean isTail, StringBuilder builder)
+        public StringBuilder visualize(StringBuilder prefix, boolean isTail, StringBuilder builder)
         {
             if(right != null)
             {
-                right.toString(new StringBuilder().append(prefix).append(isTail ? "│   " : "    "), false, builder);
+                right.visualize(new StringBuilder().append(prefix).append(isTail ? "│   " : "    "), false, builder);
             }
 
             builder.append(prefix).append(isTail ? "└── " : "┌── ").append(data).append("\n");
 
             if(left != null)
             {
-                left.toString(new StringBuilder().append(prefix).append(isTail ? "    " : "│   "), true, builder);
+                left.visualize(new StringBuilder().append(prefix).append(isTail ? "    " : "│   "), true, builder);
             }
 
             return builder;
@@ -147,10 +147,9 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
          * @see https://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram-in-java/8948691#8948691
          * @return a diagram of the tree
          */
-        @Override
-        public String toString()
+        public String visualize()
         {
-            return toString(new StringBuilder(), true, new StringBuilder()).toString();
+            return visualize(new StringBuilder(), true, new StringBuilder()).toString();
         }
     }
 }
