@@ -22,9 +22,7 @@ public class HashTable<T> implements ITable<T> {
             resize();
         }
 
-        //get a hash code
-        int code = element.hashCode();
-        int index = Math.abs(code) % table.length;
+        int index = getIndex(element);
 
         while (table[index] != null) {
             System.out.println("Collision!");
@@ -34,6 +32,11 @@ public class HashTable<T> implements ITable<T> {
         size++;
 
         return false;
+    }
+
+    private int getIndex(T element) {
+        int code = element.hashCode();
+        return Math.abs(code) % table.length;
     }
 
     private void resize() {
@@ -52,7 +55,18 @@ public class HashTable<T> implements ITable<T> {
 
     @Override
     public boolean contains(T element) {
-        return false;
+        int index = getIndex(element);
+
+        //why a loop?
+        while (table[index] != null && !table[index].equals(element)) {
+            index = (index + 1) % table.length;
+        }
+
+        //what now?
+        if (table[index] == null) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -62,17 +76,18 @@ public class HashTable<T> implements ITable<T> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public void clear() {
-
+        table = (T[])new Object[INIT_CAP];
+        size = 0;
     }
 
     @Override

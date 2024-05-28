@@ -13,5 +13,10 @@ public class TestTable {
             table.add(singleFruit);
         }
         System.out.println(table);
+
+        System.out.println(table.contains("grape"));
+        System.out.println(table.contains("lime"));
+
+
     }
 }
