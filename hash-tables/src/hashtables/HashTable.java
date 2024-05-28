@@ -92,11 +92,41 @@ public class HashTable<T> implements ITable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        //anonymous inner class
+        return new Iterator<T>() {
+            private int currentIndex;
+
+            @Override
+            public boolean hasNext() {
+                //search for an occupied spot
+                while (currentIndex < table.length && table[currentIndex] == null) {
+                    currentIndex++;
+                }
+
+                return currentIndex < table.length;
+            }
+
+            @Override
+            public T next() {
+                return table[currentIndex++];
+            }
+        };
     }
 
     @Override
     public String toString() {
         return Arrays.toString(table);
+    }
+
+    private class MyIterator implements Iterator<T> {
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public T next() {
+            return null;
+        }
     }
 }
