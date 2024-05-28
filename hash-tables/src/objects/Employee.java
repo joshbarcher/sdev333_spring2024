@@ -27,6 +27,11 @@ public class Employee {
         return this.name.equals(other.name);
     }
 
+    @Override
+    public int hashCode() {
+        return this.name.hashCode();
+    }
+
     public int getEmpId() {
         return empId;
     }
